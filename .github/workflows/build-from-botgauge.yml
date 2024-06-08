@@ -1,0 +1,40 @@
+name: Build Hello from Botgauge application 
+
+on:
+ push:
+  branches:
+    - '3-cicd-pipeline-setup-via-gha'
+#  pull_request:
+#   branches:
+#    - '3-cicd-pipeline-setup-via-gha'
+
+jobs:
+  build:
+   runs-on: ubuntu-latest
+  
+
+   steps:
+     - name: Checkout Code
+       uses: actions/checkout@v4
+       with:
+        fetch-depth: 0
+
+     - name: Set up Go
+       uses: actions/setup-go@v5
+       with:
+        go-version-file: 'go_app/go.mod' # The Go version to download (if necessary) and use.
+      
+     - name: Go version
+       run: go version
+
+     - uses: actions/cache@v3
+       with:
+        path: |
+           ~/.cache/go-build
+           ~/go/pkg/mod
+        key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
+        restore-keys: |
+             ${{ runner.os }}-go-
+
+     - name: Build the Go application
+       run: go build -o hello-from-botgauge .
