@@ -1,6 +1,9 @@
 name: Build Hello from Botgauge application 
 
 on:
+
+ workflow_dispatch:
+ 
  push:
   branches:
     - '3-cicd-pipeline-setup-via-gha'
@@ -39,7 +42,7 @@ jobs:
 
 
      - name: Install the module and dependencies
-       run: go mod download
+       run: go mod download -json go_app/go.mod
 
      - name: Build the Go application
        run: go build -o hello-from-botgauge .
