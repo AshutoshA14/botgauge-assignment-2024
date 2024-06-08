@@ -27,7 +27,8 @@ jobs:
      - name: Go version
        run: go version
 
-     - uses: actions/cache@v3
+     - name: Cache Go module
+       uses: actions/cache@v3
        with:
         path: |
            ~/.cache/go-build
@@ -35,6 +36,10 @@ jobs:
         key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
         restore-keys: |
              ${{ runner.os }}-go-
+
+
+     - Install the module and dependencies
+       run: go mod download
 
      - name: Build the Go application
        run: go build -o hello-from-botgauge .
