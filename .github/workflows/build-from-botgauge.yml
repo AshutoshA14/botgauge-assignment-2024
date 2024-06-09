@@ -42,8 +42,10 @@ jobs:
 
 
      - name: Install dependencies
+       working-directory: ./go_app
        run: |
             go mod download 
 
      - name: Build the Go application
+       working-directory: ./go_app
        run: go build -v ./...
