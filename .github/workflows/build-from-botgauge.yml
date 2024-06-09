@@ -3,7 +3,7 @@ name: Build Hello from Botgauge application
 on:
 
  workflow_dispatch:
- 
+
  push:
   branches:
     - '3-cicd-pipeline-setup-via-gha'
@@ -41,8 +41,16 @@ jobs:
              ${{ runner.os }}-go-
 
 
+     - name: Ensure go.mod exists
+       run: |
+        if [ ! -f go_app/go.mod ]; then
+          echo "go.mod not found, initializing module"
+          go mod init 
+        fi
+
+
      - name: Install the module and dependencies
-       run: go mod download -json go_app/go.mod
+       run: go mod download 
 
      - name: Build the Go application
        run: go build -o hello-from-botgauge .
