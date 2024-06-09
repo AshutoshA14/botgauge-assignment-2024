@@ -41,17 +41,9 @@ jobs:
              ${{ runner.os }}-go-
 
 
-     - name: Ensure go.mod exists
-       run: |
-        if [ ! -f go_app/go.mod ]; then
-          echo "go.mod not found, initializing module"
-          go mod init 
-        fi
-
-
      - name: Install dependencies
        run: |
-            go install go_app/go.mod
+            go mod download 
 
      - name: Build the Go application
-       run: go build -o hello-from-botgauge .
+       run: go build -v ./...
