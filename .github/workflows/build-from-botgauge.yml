@@ -51,7 +51,7 @@ jobs:
 
      - name: Install dependencies
        run: |
-            go get go_app/go.mod
+            go install go_app/go.mod
 
      - name: Build the Go application
        run: go build -o hello-from-botgauge .
