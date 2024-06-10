@@ -49,7 +49,7 @@ jobs:
      - name: Build the Go application
        working-directory: ./go_app
        run: |
-           mkdir -p build_artifact
+           sudo mkdir -p build_artifact
            go build -o /build_artifact/hello-from-botgauge
            ls -la build_artifact
       
