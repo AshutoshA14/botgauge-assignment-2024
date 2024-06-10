@@ -47,11 +47,14 @@ jobs:
             go mod download 
 
      - name: Build the Go application
-       working-directory: ./go_app
-       run: go build -v ./...
+       run: |
+           mkdir -p build_artifact
+           go build -o /build_artifact/hello-from-botgauge
+           ls -la build_artifact
+      
 
      - name: Upload build Artifact
        uses: actions/upload-artifact@v4
        with:
             name: hello-from-botgauge
-            path: ./go_app/hello-from-botgauge
+            path: build_artifact/
