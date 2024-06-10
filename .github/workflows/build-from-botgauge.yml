@@ -54,4 +54,4 @@ jobs:
        uses: actions/upload-artifact@v4
        with:
             name: hello-from-botgauge
-            path: go_app/hello-from-botgauge
+            path: ./go_app/hello-from-botgauge
