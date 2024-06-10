@@ -1,0 +1,19 @@
+name: Build and Push Docker image for Hello froom Botgauge
+
+
+on:
+
+    push:
+        branches:
+            - '3-cicd-pipeline-setup-via-gha'
+
+jobs:
+    build-and-push:
+        runs-on: ubuntu-latest
+
+        steps:
+          - name: Checkout Code
+            uses: actions/checkout@v4
+            with:
+              sparse-checkout: |
+                            Dockerfile
