@@ -1,4 +1,4 @@
-name: Build and Push Docker image for Hello froom Botgauge
+name: Build and Push Docker image for Hello from Botgauge
 
 
 on:
