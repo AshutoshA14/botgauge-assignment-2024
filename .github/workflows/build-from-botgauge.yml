@@ -1,4 +1,4 @@
-name: Build Hello from Botgauge application 
+name: Build Hello from Botgauge App
 
 on:
 
@@ -26,35 +26,7 @@ jobs:
        uses: actions/setup-go@v5
        with:
         go-version-file: 'go_app/go.mod' # The Go version to download (if necessary) and use.
-      
-     - name: Go version
-       run: go version
-
-     - name: Cache Go module
-       uses: actions/cache@v3
-       with:
-        path: |
-           ~/.cache/go-build
-           ~/go/pkg/mod
-        key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
-        restore-keys: |
-             ${{ runner.os }}-go-
-
-     - name: Install dependencies
-       working-directory: ./go_app
-       run: |
-            go mod download 
-            go mod verify
-
-    #  - name: Build the Go application
-    #    working-directory: ./go_app
-    #    run: |
-    #        go build -o /build_artifact/hello-from-botgauge
-    #        ls -la build_artifact
-      
-
-    #  - name: Upload build Artifact
-    #    uses: actions/upload-artifact@v4
-    #    with:
-    #         name: hello-from-botgauge
-    #         path: build_artifact/
+    
+     - name:
+       run: make build
+       
