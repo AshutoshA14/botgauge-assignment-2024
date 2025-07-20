@@ -1,0 +1,33 @@
+name: Build Hello from Botgauge App
+
+on:
+
+ workflow_dispatch:
+
+ push:
+  branches:
+    - '3-cicd-pipeline-setup-via-gha'
+#  pull_request:
+#   branches:
+#    - '3-cicd-pipeline-setup-via-gha'
+
+jobs:
+  build:
+   name: Build Hello From Botgauge App
+   runs-on: ubuntu-latest
+  
+
+   steps:
+     - name: Checkout Code
+       uses: actions/checkout@v4
+       with:
+        fetch-depth: 0
+
+     - name: Set up Go
+       uses: actions/setup-go@v5
+       with:
+        go-version-file: 'go_app/go.mod' # The Go version to download (if necessary) and use.
+    
+     - name: Execute Makefile for Go
+       run: make build
+
